@@ -1,0 +1,297 @@
+# Professional Calculator Application
+
+A modular, professional-grade command-line calculator application implemented in Python, demonstrating clean architecture, comprehensive error handling, extensive testing, and continuous integration.
+
+## 🚀 Features
+
+- **Interactive REPL Interface**: Read-Eval-Print Loop for continuous user interaction
+- **Comprehensive Arithmetic Operations**: Addition, subtraction, multiplication, and division
+- **Calculation History**: Maintains session history with easy access to past calculations
+- **Robust Error Handling**: Implements both LBYL and EAFP paradigms for comprehensive error management
+- **Input Validation**: Validates user inputs and provides helpful feedback
+- **Special Commands**: Help, history, clear, and exit commands for enhanced user experience
+- **Modular Design**: Clean architecture following object-oriented principles
+- **100% Test Coverage**: Comprehensive unit and parameterized testing
+- **Continuous Integration**: Automated testing with GitHub Actions
+
+## 📁 Project Structure
+
+```
+IS601_Module4/
+├── app/
+│   ├── __init__.py
+│   ├── calculator/
+│   │   ├── __init__.py
+│   │   └── calculator.py          # Main calculator logic and REPL interface
+│   ├── calculation/
+│   │   ├── __init__.py
+│   │   └── calculation.py         # Calculation classes and factory
+│   └── operation/
+│       ├── __init__.py
+│       └── operations.py          # Arithmetic operation implementations
+├── tests/
+│   ├── conftest.py               # Test configuration and fixtures
+│   ├── test_calculations.py     # Tests for calculation module
+│   ├── test_operations.py       # Tests for operations module
+│   └── test_calculator.py       # Tests for calculator module
+├── .github/
+│   └── workflows/
+│       └── python-app.yml       # GitHub Actions CI/CD configuration
+├── main.py                      # Application entry point
+├── requirements.txt             # Project dependencies
+└── README.md                    # This file
+```
+
+## 🛠️ Installation and Setup
+
+### Prerequisites
+
+- Python 3.7 or higher
+- pip (Python package installer)
+
+### Local Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kk795-NJIT/IS601_Module4.git
+   cd IS601_Module4
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```bash
+   # Create virtual environment
+   python -m venv venv
+   
+   # Activate virtual environment
+   # On macOS/Linux:
+   source venv/bin/activate
+   # On Windows:
+   # venv\Scripts\activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## 🏃‍♂️ Usage
+
+### Running the Calculator
+
+Execute the main application:
+```bash
+python main.py
+```
+
+### Basic Operations
+
+The calculator supports various input formats:
+
+```
+Calculator> 5 + 3
+Result: 5.0 + 3.0 = 8.0
+
+Calculator> 10.5 * 2
+Result: 10.5 * 2.0 = 21.0
+
+Calculator> 15 div 3
+Result: 15.0 / 3.0 = 5.0
+```
+
+### Supported Operations
+
+| Operation | Symbols | Aliases |
+|-----------|---------|---------|
+| Addition | `+` | `add`, `addition` |
+| Subtraction | `-` | `sub`, `subtract`, `subtraction` |
+| Multiplication | `*` | `mul`, `multiply`, `multiplication` |
+| Division | `/` | `div`, `divide`, `division` |
+
+### Special Commands
+
+- `help` - Display help information and usage instructions
+- `history` - Show calculation history for the current session
+- `clear` - Clear the calculation history
+- `exit` or `quit` - Exit the calculator application
+
+### Example Session
+
+```
+==================================================
+   Professional Calculator Application
+==================================================
+Type 'help' for instructions, 'exit' to quit
+Supported operations: +, -, *, /
+
+Calculator> 5 + 3
+Result: 5.0 + 3.0 = 8.0
+
+Calculator> 10 * 2.5
+Result: 10.0 * 2.5 = 25.0
+
+Calculator> history
+==============================
+CALCULATION HISTORY
+==============================
+ 1. 5.0 + 3.0 = 8.0
+ 2. 10.0 * 2.5 = 25.0
+==============================
+
+Calculator> exit
+Goodbye!
+```
+
+## 🧪 Testing
+
+### Running Tests
+
+Execute all tests:
+```bash
+pytest
+```
+
+Run tests with coverage report:
+```bash
+pytest --cov=app tests/ --cov-report=term-missing
+```
+
+Run specific test modules:
+```bash
+pytest tests/test_operations.py
+pytest tests/test_calculations.py
+pytest tests/test_calculator.py
+```
+
+### Test Coverage
+
+The project maintains 100% test coverage across all modules:
+
+- **Operation Tests**: Comprehensive testing of all arithmetic operations including edge cases
+- **Calculation Tests**: Testing of calculation objects and factory patterns
+- **Calculator Tests**: Full testing of REPL interface, command handling, and user interaction
+- **Parameterized Tests**: Multiple input scenarios tested efficiently
+- **Error Handling Tests**: Verification of proper error handling for invalid inputs
+
+### Coverage Verification
+
+Check coverage manually:
+```bash
+coverage run -m pytest tests/
+coverage report
+coverage html  # Generate HTML coverage report
+```
+
+## 🏗️ Architecture and Design Patterns
+
+### Object-Oriented Design
+
+- **Encapsulation**: Data and methods are properly encapsulated within classes
+- **Inheritance**: Abstract base class `Operation` defines interface for all operations
+- **Polymorphism**: Operations implement common interface with different behaviors
+- **Abstraction**: Complex calculator logic abstracted into manageable components
+
+### Design Patterns
+
+- **Factory Pattern**: `CalculationFactory` creates calculation instances
+- **Strategy Pattern**: Different operation strategies for arithmetic calculations
+- **Template Method**: Abstract `Operation` class defines operation interface
+- **Singleton-like**: Operation registry provides centralized access to operations
+
+### Error Handling Paradigms
+
+- **LBYL (Look Before You Leap)**: Input validation before processing
+- **EAFP (Easier to Ask Forgiveness than Permission)**: Exception handling for runtime errors
+
+## 🔄 Continuous Integration
+
+### GitHub Actions Workflow
+
+The project includes automated CI/CD pipeline that:
+
+1. **Environment Setup**: Configures Python environment
+2. **Dependency Installation**: Installs required packages
+3. **Test Execution**: Runs comprehensive test suite
+4. **Coverage Verification**: Ensures 100% test coverage
+5. **Build Validation**: Fails if coverage drops below 100%
+
+### Workflow Configuration
+
+Located in `.github/workflows/python-app.yml`, the workflow:
+- Triggers on pushes and pull requests to main branch
+- Uses latest Ubuntu environment
+- Tests with Python 3.x
+- Reports detailed coverage information
+- Enforces coverage standards
+
+## 📝 Code Quality and Best Practices
+
+### DRY Principle
+
+- Reusable components across modules
+- Centralized operation registry
+- Shared validation logic
+- Common error handling patterns
+
+### Clean Code Practices
+
+- Meaningful variable and function names
+- Comprehensive docstrings and comments
+- Consistent formatting and style
+- Modular design with single responsibility
+
+### Documentation Standards
+
+- Class and method docstrings
+- Type hints for better code clarity
+- Inline comments for complex logic
+- Comprehensive README documentation
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Maintain 100% test coverage
+- Follow existing code style and patterns
+- Add comprehensive tests for new features
+- Update documentation as needed
+- Ensure all CI checks pass
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Import Errors**: Ensure you're running from the project root directory
+2. **Test Failures**: Check that all dependencies are installed correctly
+3. **Coverage Issues**: Verify all code paths have corresponding tests
+
+### Getting Help
+
+- Check the built-in `help` command in the calculator
+- Review test files for usage examples
+- Examine the comprehensive docstrings in the source code
+
+## 📄 License
+
+This project is part of IS601 Module 4 assignment. Please refer to your course guidelines for usage restrictions.
+
+## 🎯 Learning Outcomes Achieved
+
+- **CLO6**: Implemented comprehensive object-oriented programming principles including:
+  - Encapsulation through proper class design
+  - Inheritance via abstract base classes
+  - Polymorphism through operation strategy patterns
+  - Abstraction of complex calculator functionality
+
+## 👨‍💻 Author
+
+Developed as part of IS601 Module 4 Assignment - Professional Calculator Application
+
+---
+
+**Note**: This calculator application demonstrates professional software development practices including clean architecture, comprehensive testing, error handling, and continuous integration. It serves as an example of applying object-oriented programming principles in a real-world application context.
